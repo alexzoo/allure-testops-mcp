@@ -8,7 +8,7 @@ export function listTestResults(
   launchId: number,
   query: QueryParams,
 ): Promise<unknown> {
-  return client.get("/api/testresult", {
+  return client.get("/api/rs/testresult", {
     launchId,
     ...query,
   });
@@ -20,7 +20,7 @@ export function searchTestResults(
   rql: string,
   query: QueryParams,
 ): Promise<unknown> {
-  return client.get("/api/testresult/__search", {
+  return client.get("/api/rs/testresult/__search", {
     projectId,
     rql,
     ...query,
@@ -28,14 +28,14 @@ export function searchTestResults(
 }
 
 export function getTestResult(client: AllureApiClient, id: number): Promise<unknown> {
-  return client.get(`/api/testresult/${id}`);
+  return client.get(`/api/rs/testresult/${id}`);
 }
 
 export function createTestResult(
   client: AllureApiClient,
   payload: Record<string, unknown>,
 ): Promise<unknown> {
-  return client.post("/api/testresult", payload);
+  return client.post("/api/rs/testresult", payload);
 }
 
 export function updateTestResult(
@@ -43,7 +43,7 @@ export function updateTestResult(
   id: number,
   payload: Record<string, unknown>,
 ): Promise<unknown> {
-  return client.patch(`/api/testresult/${id}`, payload);
+  return client.patch(`/api/rs/testresult/${id}`, payload);
 }
 
 export function getTestResultHistory(
@@ -51,7 +51,7 @@ export function getTestResultHistory(
   id: number,
   query: QueryParams,
 ): Promise<unknown> {
-  return client.get(`/api/testresult/${id}/history`, query);
+  return client.get(`/api/rs/testresult/${id}/history`, query);
 }
 
 export function assignTestResult(
@@ -59,7 +59,7 @@ export function assignTestResult(
   id: number,
   payload: Record<string, unknown>,
 ): Promise<unknown> {
-  return client.post(`/api/testresult/${id}/assign`, payload);
+  return client.post(`/api/rs/testresult/${id}/assign`, payload);
 }
 
 export function resolveTestResult(
@@ -67,5 +67,5 @@ export function resolveTestResult(
   id: number,
   payload: Record<string, unknown>,
 ): Promise<unknown> {
-  return client.post(`/api/testresult/${id}/resolve`, payload);
+  return client.post(`/api/rs/testresult/${id}/resolve`, payload);
 }

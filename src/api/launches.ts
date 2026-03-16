@@ -8,7 +8,7 @@ export function listLaunches(
   projectId: number,
   query: QueryParams,
 ): Promise<unknown> {
-  return client.get("/api/launch", {
+  return client.get("/api/rs/launch", {
     projectId,
     ...query,
   });
@@ -20,7 +20,7 @@ export function searchLaunches(
   rql: string,
   query: QueryParams,
 ): Promise<unknown> {
-  return client.get("/api/launch/__search", {
+  return client.get("/api/rs/launch/__search", {
     projectId,
     rql,
     ...query,
@@ -28,14 +28,14 @@ export function searchLaunches(
 }
 
 export function getLaunch(client: AllureApiClient, id: number): Promise<unknown> {
-  return client.get(`/api/launch/${id}`);
+  return client.get(`/api/rs/launch/${id}`);
 }
 
 export function createLaunch(
   client: AllureApiClient,
   payload: Record<string, unknown>,
 ): Promise<unknown> {
-  return client.post("/api/launch", payload);
+  return client.post("/api/rs/launch", payload);
 }
 
 export function updateLaunch(
@@ -43,27 +43,27 @@ export function updateLaunch(
   id: number,
   payload: Record<string, unknown>,
 ): Promise<unknown> {
-  return client.patch(`/api/launch/${id}`, payload);
+  return client.patch(`/api/rs/launch/${id}`, payload);
 }
 
 export function deleteLaunch(client: AllureApiClient, id: number): Promise<unknown> {
-  return client.delete(`/api/launch/${id}`);
+  return client.delete(`/api/rs/launch/${id}`);
 }
 
 export function closeLaunch(client: AllureApiClient, id: number): Promise<unknown> {
-  return client.post(`/api/launch/${id}/close`);
+  return client.post(`/api/rs/launch/${id}/close`);
 }
 
 export function reopenLaunch(client: AllureApiClient, id: number): Promise<unknown> {
-  return client.post(`/api/launch/${id}/reopen`);
+  return client.post(`/api/rs/launch/${id}/reopen`);
 }
 
 export function getLaunchStatistic(client: AllureApiClient, id: number): Promise<unknown> {
-  return client.get(`/api/launch/${id}/statistic`);
+  return client.get(`/api/rs/launch/${id}/statistic`);
 }
 
 export function getLaunchProgress(client: AllureApiClient, id: number): Promise<unknown> {
-  return client.get(`/api/launch/${id}/progress`);
+  return client.get(`/api/rs/launch/${id}/progress`);
 }
 
 export function addTestCasesToLaunch(
@@ -71,7 +71,7 @@ export function addTestCasesToLaunch(
   id: number,
   payload: Record<string, unknown>,
 ): Promise<unknown> {
-  return client.post(`/api/launch/${id}/testcase/add`, payload);
+  return client.post(`/api/rs/launch/${id}/testcase/add`, payload);
 }
 
 export function addTestPlanToLaunch(
@@ -79,5 +79,5 @@ export function addTestPlanToLaunch(
   id: number,
   payload: Record<string, unknown>,
 ): Promise<unknown> {
-  return client.post(`/api/launch/${id}/testplan/add`, payload);
+  return client.post(`/api/rs/launch/${id}/testplan/add`, payload);
 }

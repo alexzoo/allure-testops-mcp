@@ -94,7 +94,7 @@ export function listTestCases(
   projectId: number,
   query: QueryParams,
 ): Promise<unknown> {
-  return client.get("/api/testcase", {
+  return client.get("/api/rs/testcase", {
     projectId,
     ...query,
   });
@@ -106,7 +106,7 @@ export function searchTestCases(
   rql: string,
   query: QueryParams,
 ): Promise<unknown> {
-  return client.get("/api/testcase/__search", {
+  return client.get("/api/rs/testcase/__search", {
     projectId,
     rql,
     ...query,
@@ -114,14 +114,14 @@ export function searchTestCases(
 }
 
 export function getTestCase(client: AllureApiClient, id: number): Promise<unknown> {
-  return client.get(`/api/testcase/${id}`);
+  return client.get(`/api/rs/testcase/${id}`);
 }
 
 export function createTestCase(
   client: AllureApiClient,
   payload: Record<string, unknown>,
 ): Promise<unknown> {
-  return client.post("/api/testcase", payload);
+  return client.post("/api/rs/testcase", payload);
 }
 
 export function updateTestCase(
@@ -129,15 +129,15 @@ export function updateTestCase(
   id: number,
   payload: Record<string, unknown>,
 ): Promise<unknown> {
-  return client.patch(`/api/testcase/${id}`, payload);
+  return client.patch(`/api/rs/testcase/${id}`, payload);
 }
 
 export function deleteTestCase(client: AllureApiClient, id: number): Promise<unknown> {
-  return client.delete(`/api/testcase/${id}`);
+  return client.delete(`/api/rs/testcase/${id}`);
 }
 
 export function getTestCaseOverview(client: AllureApiClient, testCaseId: number): Promise<unknown> {
-  return client.get(`/api/testcase/${testCaseId}/overview`);
+  return client.get(`/api/rs/testcase/${testCaseId}/overview`);
 }
 
 export function getTestCaseHistory(
@@ -145,15 +145,15 @@ export function getTestCaseHistory(
   id: number,
   query: QueryParams,
 ): Promise<unknown> {
-  return client.get(`/api/testcase/${id}/history`, query);
+  return client.get(`/api/rs/testcase/${id}/history`, query);
 }
 
 export function getTestCaseScenario(client: AllureApiClient, id: number): Promise<unknown> {
-  return client.get(`/api/testcase/${id}/scenario`);
+  return client.get(`/api/rs/testcase/${id}/scenario`);
 }
 
 export function getTestCaseTags(client: AllureApiClient, testCaseId: number): Promise<unknown> {
-  return client.get(`/api/testcase/${testCaseId}/tag`);
+  return client.get(`/api/rs/testcase/${testCaseId}/tag`);
 }
 
 export function setTestCaseTags(
@@ -161,11 +161,11 @@ export function setTestCaseTags(
   testCaseId: number,
   payload: unknown,
 ): Promise<unknown> {
-  return client.post(`/api/testcase/${testCaseId}/tag`, payload);
+  return client.post(`/api/rs/testcase/${testCaseId}/tag`, payload);
 }
 
 export function getTestCaseIssues(client: AllureApiClient, testCaseId: number): Promise<unknown> {
-  return client.get(`/api/testcase/${testCaseId}/issue`);
+  return client.get(`/api/rs/testcase/${testCaseId}/issue`);
 }
 
 export function setTestCaseIssues(
@@ -173,11 +173,11 @@ export function setTestCaseIssues(
   testCaseId: number,
   payload: unknown,
 ): Promise<unknown> {
-  return client.post(`/api/testcase/${testCaseId}/issue`, payload);
+  return client.post(`/api/rs/testcase/${testCaseId}/issue`, payload);
 }
 
 export function restoreTestCase(client: AllureApiClient, id: number): Promise<unknown> {
-  return client.post(`/api/testcase/${id}/restore`);
+  return client.post(`/api/rs/testcase/${id}/restore`);
 }
 
 export function listProjectCustomFields(
@@ -205,7 +205,7 @@ export function getTestCaseCustomFields(
   testCaseId: number,
   projectId: number,
 ): Promise<unknown> {
-  return client.get(`/api/testcase/${testCaseId}/cfv`, {
+  return client.get(`/api/rs/testcase/${testCaseId}/cfv`, {
     projectId,
   });
 }
@@ -217,7 +217,7 @@ export function setTestCaseCustomFields(
   payload: unknown,
 ): Promise<unknown> {
   const cfv = normalizeCustomFieldBulkAddPayload(payload);
-  return client.post("/api/v2/test-case/bulk/cfv/add", {
+  return client.post("/api/rs/v2/test-case/bulk/cfv/add", {
     selection: {
       projectId,
       testCasesInclude: [testCaseId],
@@ -233,7 +233,7 @@ export function addTagsToTestCases(
   testCaseIds: number[],
   tags: TestTagRef[],
 ): Promise<unknown> {
-  return client.post("/api/v2/test-case/bulk/tag/add", {
+  return client.post("/api/rs/v2/test-case/bulk/tag/add", {
     selection: {
       projectId,
       testCasesInclude: testCaseIds,
@@ -249,7 +249,7 @@ export function removeTagsFromTestCases(
   testCaseIds: number[],
   tagIds: number[],
 ): Promise<unknown> {
-  return client.post("/api/v2/test-case/bulk/tag/remove", {
+  return client.post("/api/rs/v2/test-case/bulk/tag/remove", {
     selection: {
       projectId,
       testCasesInclude: testCaseIds,
@@ -265,7 +265,7 @@ export function addExternalLinksToTestCases(
   testCaseIds: number[],
   links: ExternalLinkRef[],
 ): Promise<unknown> {
-  return client.post("/api/v2/test-case/bulk/external-link/add", {
+  return client.post("/api/rs/v2/test-case/bulk/external-link/add", {
     selection: {
       projectId,
       testCasesInclude: testCaseIds,

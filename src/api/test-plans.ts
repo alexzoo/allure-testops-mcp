@@ -8,21 +8,21 @@ export function listTestPlans(
   projectId: number,
   query: QueryParams,
 ): Promise<unknown> {
-  return client.get("/api/testplan", {
+  return client.get("/api/rs/testplan", {
     projectId,
     ...query,
   });
 }
 
 export function getTestPlan(client: AllureApiClient, id: number): Promise<unknown> {
-  return client.get(`/api/testplan/${id}`);
+  return client.get(`/api/rs/testplan/${id}`);
 }
 
 export function createTestPlan(
   client: AllureApiClient,
   payload: Record<string, unknown>,
 ): Promise<unknown> {
-  return client.post("/api/testplan", payload);
+  return client.post("/api/rs/testplan", payload);
 }
 
 export function updateTestPlan(
@@ -30,11 +30,11 @@ export function updateTestPlan(
   id: number,
   payload: Record<string, unknown>,
 ): Promise<unknown> {
-  return client.patch(`/api/testplan/${id}`, payload);
+  return client.patch(`/api/rs/testplan/${id}`, payload);
 }
 
 export function deleteTestPlan(client: AllureApiClient, id: number): Promise<unknown> {
-  return client.delete(`/api/testplan/${id}`);
+  return client.delete(`/api/rs/testplan/${id}`);
 }
 
 export function runTestPlan(
@@ -42,5 +42,5 @@ export function runTestPlan(
   id: number,
   payload: Record<string, unknown> | undefined,
 ): Promise<unknown> {
-  return client.post(`/api/testplan/${id}/run`, payload);
+  return client.post(`/api/rs/testplan/${id}/run`, payload);
 }
